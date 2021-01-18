@@ -1,27 +1,37 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <Hello msg="Welcome to Your Vue.js + TypeScript App" />
+  <div>
+    <BgStars />
+    <div class="map">
+      <System name="Vesper" />
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { Hello } from '@/components'
+import { BgStars, System } from '@/components'
 
 export default defineComponent({
   name: 'App',
   components: {
-    Hello
+    BgStars,
+    System
   }
 })
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import '@/assets/scss/_vars';
+
+.map {
+  font-family: $font-sans;
+  position: absolute;
+  font-weight: 500;
+}
+
+.test {
+  color: white;
+  margin-left: 100px;
+  margin-top: 100px;
 }
 </style>

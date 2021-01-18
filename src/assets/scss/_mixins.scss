@@ -1,0 +1,38 @@
+@use 'sass:math';
+@use 'sass:meta';
+
+@mixin full() {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+@mixin orbit {
+  animation-name: orb;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  @content;
+
+  @keyframes orb {
+    from {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(-360deg);
+      transform: rotate(-360deg);
+    }
+  }
+}
+
+@mixin size($size) {
+  width: $size;
+  height: $size;
+  transform: translate(-50%, -50%);
+}
+
+@mixin round {
+  border-radius: 999px;
+}

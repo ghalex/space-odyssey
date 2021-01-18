@@ -1,1 +1,4 @@
-export { default as Hello } from "./Hello/index.vue";
+export { default as BgStars } from './BgStars/index.vue'
+export { default as Sun } from './Sun/index.vue'
+export { default as System } from './System/index.vue'
+export { default as Planet } from './Planet/index.vue'
