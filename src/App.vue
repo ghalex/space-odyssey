@@ -2,7 +2,13 @@
   <div>
     <BgStars />
     <div class="map">
-      <System name="Vesper" />
+      <System
+        :planets="[
+          { orbit: 100, hasSattelite: false, radius: 6, speed: 3 },
+          { orbit: 140, hasSattelite: true, color: 'red', offset: { x: -20 } },
+          { orbit: 225, radius: 18, color: 'green', offset: { x: 20 }, speed: 11 }
+        ]"
+      />
     </div>
   </div>
 </template>

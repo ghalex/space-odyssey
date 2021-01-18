@@ -1,12 +1,21 @@
 <template>
   <div class="system">
     <div class="system-shapes">
-      <Planet :orbit="120" :radius="8" :speed="8" color="red" hasSattelite />
-      <Planet :orbit="220" :radius="16" :speed="14" :offset="{ x: -20, y: 0 }" />
+      <Planet
+        v-for="(p, i) in planets"
+        :key="i"
+        :orbit="p.orbit"
+        :radius="p.radius"
+        :speed="p.speed"
+        :color="p.color"
+        :offset="p.offset"
+        :hasSattelite="p.hasSattelite"
+      />
+      <Asteroids />
       <Sun />
     </div>
     <div class="system-info">
-      <h1>Vespar</h1>
+      <h1>{{ name }}</h1>
       <h2>system</h2>
     </div>
   </div>
@@ -17,11 +26,21 @@ import { defineComponent } from 'vue'
 
 import Sun from '../Sun/index.vue'
 import Planet from '../Planet/index.vue'
+import Asteroids from '../Asteroids/index.vue'
 
 export default defineComponent({
   name: 'System',
-  props: {},
-  components: { Sun, Planet },
+  props: {
+    name: {
+      type: String,
+      default: () => 'SYS-' + (Math.floor(Math.random() * 100) + 1)
+    },
+    planets: {
+      type: Array,
+      default: () => []
+    }
+  },
+  components: { Sun, Planet, Asteroids },
   setup(p) {
     return {}
   }
@@ -51,6 +70,7 @@ export default defineComponent({
     color: #fff;
     margin-top: 0.5rem;
     user-select: none;
+    white-space: nowrap;
 
     h1 {
       color: vars.$primary-color;

@@ -42,7 +42,7 @@ export default defineComponent({
     },
     speed: {
       type: Number,
-      default: 4
+      default: 6
     },
     color: {
       type: String,
@@ -83,7 +83,6 @@ export default defineComponent({
   width: 100%;
   height: 100%;
   border: 1px solid rgba(102, 166, 229, 0.12);
-  z-index: 2;
 
   @include m.round;
   @include m.orbit {
