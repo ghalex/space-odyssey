@@ -1,6 +1,7 @@
 <template>
   <div class="system">
     <div class="system-shapes">
+      <Asteroids />
       <Planet
         v-for="(p, i) in planets"
         :key="i"
@@ -11,7 +12,6 @@
         :offset="p.offset"
         :hasSattelite="p.hasSattelite"
       />
-      <Asteroids />
       <Sun />
     </div>
     <div class="system-info">
