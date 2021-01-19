@@ -1,27 +1,28 @@
 <template>
   <div>
     <BgStars />
-    <div class="map">
+    <Map width="600px">
       <System
         :planets="[
-          { orbit: 100, hasSattelite: false, radius: 6, speed: 3 },
+          { orbit: 120, hasSattelite: false, radius: 6, speed: 3 },
           { orbit: 140, hasSattelite: true, color: 'red', offset: { x: -20 } },
           { orbit: 225, radius: 18, color: 'green', offset: { x: 20 }, speed: 11 }
         ]"
       />
-    </div>
+    </Map>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { BgStars, System } from '@/components'
+import { BgStars, System, Map } from '@/components'
 
 export default defineComponent({
   name: 'App',
   components: {
     BgStars,
-    System
+    System,
+    Map
   }
 })
 </script>
