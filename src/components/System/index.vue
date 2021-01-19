@@ -1,5 +1,5 @@
 <template>
-  <div class="system">
+  <div class="system" :style="{ left: position.x + 'px', top: position.y + 'px' }">
     <div class="system-shapes">
       <Asteroids />
       <Planet
@@ -38,6 +38,10 @@ export default defineComponent({
     planets: {
       type: Array,
       default: () => []
+    },
+    position: {
+      type: Object,
+      default: () => ({ x: 0, y: 0 })
     }
   },
   components: { Sun, Planet, Asteroids },
@@ -52,8 +56,6 @@ export default defineComponent({
 
 .system {
   position: absolute;
-  left: 200px;
-  top: 200px;
 
   .system-shapes {
     position: absolute;
