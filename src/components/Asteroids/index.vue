@@ -10,6 +10,7 @@
   >
     <div
       class="asteroids-belt"
+      :class="`radius-${radius}`"
       :style="{
         width: radius * 2 + 'px',
         height: radius * 2 + 'px'
@@ -19,7 +20,6 @@
 </template>
 
 <script lang="ts">
-import { useStars } from '@/hooks'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -27,22 +27,18 @@ export default defineComponent({
   props: {
     radius: {
       type: Number,
-      default: 140
+      default: 50
     },
     offset: {
       type: Object,
       default: () => {
-        return { x: 20, y: 0 }
+        return { x: 0, y: 0 }
       }
     },
     stars: {
       type: Number,
       default: 100
     }
-  },
-  setup(p) {
-    const starsCSS = useStars(p.stars, p.radius * 2, -p.radius / 2, -p.radius * 0.7)
-    return { starsCSS }
   }
 })
 </script>
@@ -64,7 +60,6 @@ export default defineComponent({
   &::before {
     background: currentColor;
     border-radius: 50%;
-    box-shadow: f.asteroids(15, 290px, 30px);
     color: #ccc;
     content: '';
     display: block;
@@ -83,6 +78,27 @@ export default defineComponent({
   @include m.round;
   @include m.orbit {
     animation-duration: 120s;
+  }
+
+  &.radius-50 {
+    &::after,
+    &::before {
+      box-shadow: f.asteroids(15, 100px, 8px);
+    }
+  }
+
+  &.radius-100 {
+    &::after,
+    &::before {
+      box-shadow: f.asteroids(15, 200px, 20px);
+    }
+  }
+
+  &.radius-150 {
+    &::after,
+    &::before {
+      box-shadow: f.asteroids(15, 300px, 30px);
+    }
   }
 }
 </style>

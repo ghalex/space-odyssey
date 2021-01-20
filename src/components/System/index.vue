@@ -1,7 +1,7 @@
 <template>
   <div class="system" :style="{ left: position.x + 'px', top: position.y + 'px' }">
     <div class="system-shapes">
-      <Asteroids />
+      <Asteroids v-if="asteroids" :radius="asteroids.radius" />
       <Planet
         v-for="(p, i) in planets"
         :key="i"
@@ -42,6 +42,10 @@ export default defineComponent({
     position: {
       type: Object,
       default: () => ({ x: 0, y: 0 })
+    },
+    asteroids: {
+      type: Object,
+      default: null
     }
   },
   components: { Sun, Planet, Asteroids },

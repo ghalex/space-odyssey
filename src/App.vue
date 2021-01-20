@@ -3,19 +3,21 @@
     <BgStars />
     <Map width="600px">
       <System
-        :position="{x: 100, y: 100}"
+        :position="{ x: 100, y: 100 }"
         :planets="[
           { orbit: 120, hasSattelite: false, radius: 6, speed: 3 },
-          { orbit: 140, hasSattelite: true, color: 'red', offset: { x: -10 } },
-          { orbit: 225, radius: 18, color: 'green', offset: { x: 20 }, speed: 11 }
+          { orbit: 200, hasSattelite: true, color: 'red', offset: { x: -10 } },
+          { orbit: 300, radius: 18, color: 'green', offset: { x: 0 }, speed: 11 }
         ]"
+        :asteroids="{ radius: 150 }"
       />
-       <System
-        :position="{x: 420, y: 400}"
+      <System
+        :position="{ x: 420, y: 400 }"
         :planets="[
           { orbit: 120, hasSattelite: false, radius: 6, speed: 3 },
-          { orbit: 140, hasSattelite: true, color: '#F58866', offset: { x: 10 } },
+          { orbit: 200, hasSattelite: true, color: '#F58866', offset: { x: 10 } }
         ]"
+        :asteroids="{ radius: 100 }"
       />
     </Map>
   </div>
