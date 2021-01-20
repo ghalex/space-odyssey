@@ -1,7 +1,10 @@
 @use './vars' as vars;
+@use './mixins' as m;
 
 body {
   font-family: vars.$font-sans;
+  margin: 0;
+  padding: 0;
 }
 
 .flex {
@@ -14,4 +17,8 @@ body {
 
 .flex-row {
   flex-direction: row;
+}
+
+.full {
+  @include m.full;
 }

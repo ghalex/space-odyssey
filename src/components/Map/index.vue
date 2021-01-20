@@ -1,7 +1,10 @@
 <template>
-  <div class="map" :style="{ width, height }" ref="el">
-    <div class="map-container" :style="{ transform }">
-      <slot />
+  <div class="map" :style="{ width: width + 'px', height: height + 'px' }" ref="el">
+    <Background class="full" />
+    <div class="map-area" :style="{ transform }">
+      <div class="systems">
+        <System v-for="(s, i) in systems" :key="i" v-bind="s" />
+      </div>
     </div>
   </div>
 </template>
@@ -10,6 +13,9 @@
 import { ref, onMounted } from 'vue'
 import { zoom } from 'd3-zoom'
 import { select } from 'd3-selection'
+
+import System from '../System/index.vue'
+import Background from '../BgStars/index.vue'
 
 export default {
   name: 'Map',
@@ -21,8 +27,13 @@ export default {
     height: {
       type: String,
       default: '500px'
+    },
+    systems: {
+      type: Array,
+      default: () => []
     }
   },
+  components: { System, Background },
   setup() {
     const el = ref(null)
     const transform = ref('')
@@ -34,7 +45,6 @@ export default {
           .on('zoom', (e) => {
             const { x, y, k } = e.transform
             transform.value = `translate(${x}px, ${y}px) scale(${k})`
-            console.log(transform.value)
           }) as any
       )
     })
@@ -45,13 +55,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use '@/assets/scss/_mixins' as m;
+
 .map {
-  border: 1px solid red;
   position: relative;
   overflow: hidden;
 }
 
-.map-container {
+.map-area {
   position: absolute;
   left: 0;
   top: 0;

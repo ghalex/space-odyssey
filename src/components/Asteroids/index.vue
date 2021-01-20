@@ -4,23 +4,25 @@
     :style="{
       top: offset.y + 'px',
       left: offset.x + 'px',
-      width: radius * 2 + 'px',
-      height: radius * 2 + 'px'
+      width: size + 'px',
+      height: size + 'px'
     }"
   >
     <div
       class="asteroids-belt"
-      :class="`radius-${radius}`"
       :style="{
-        width: radius * 2 + 'px',
-        height: radius * 2 + 'px'
+        width: size + 'px',
+        height: size + 'px'
       }"
-    />
+    >
+      <div :style="{ width: size * 0.8 + 'px', height: size * 0.8 + 'px', ...asteroids }" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { useStars } from '@/hooks'
+import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'Asteroids',
@@ -37,8 +39,14 @@ export default defineComponent({
     },
     stars: {
       type: Number,
-      default: 100
+      default: 200
     }
+  },
+  setup(p) {
+    const size = computed(() => p.radius * 2)
+    const asteroids = useStars(p.stars, size.value, -size.value / 2, -size.value * 0.393)
+
+    return { asteroids, size }
   }
 })
 </script>
@@ -51,54 +59,23 @@ export default defineComponent({
   position: absolute;
   transform: translate(-50%, -50%);
 }
+
 .asteroids-belt {
   position: absolute;
   overflow: hidden;
-  opacity: 0.5;
-
-  &::after,
-  &::before {
-    background: currentColor;
-    border-radius: 50%;
-    color: #ccc;
-    content: '';
-    display: block;
-    left: 50%;
-    height: 0.1rem;
-    position: absolute;
-    top: 50%;
-    transform: translate3d(-50%, -50%, 0);
-    width: 0.1rem;
-  }
-
-  &::after {
-    transform: translate3d(-50%, -50%, 0) rotate(-45deg);
-  }
 
   @include m.round;
   @include m.orbit {
-    animation-duration: 120s;
+    animation-duration: 60s;
   }
 
-  &.radius-50 {
-    &::after,
-    &::before {
-      box-shadow: f.asteroids(15, 100px, 8px);
-    }
-  }
-
-  &.radius-100 {
-    &::after,
-    &::before {
-      box-shadow: f.asteroids(15, 200px, 20px);
-    }
-  }
-
-  &.radius-150 {
-    &::after,
-    &::before {
-      box-shadow: f.asteroids(15, 300px, 30px);
-    }
+  & > div {
+    position: absolute;
+    background: transparent;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 999px;
   }
 }
 </style>

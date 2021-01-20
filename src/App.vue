@@ -1,37 +1,38 @@
 <template>
   <div>
-    <BgStars />
-    <Map width="600px">
-      <System
-        :position="{ x: 100, y: 100 }"
-        :planets="[
-          { orbit: 120, hasSattelite: false, radius: 6, speed: 3 },
-          { orbit: 200, hasSattelite: true, color: 'red', offset: { x: -10 } },
-          { orbit: 300, radius: 18, color: 'green', offset: { x: 0 }, speed: 11 }
-        ]"
-        :asteroids="{ radius: 150 }"
-      />
-      <System
-        :position="{ x: 420, y: 400 }"
-        :planets="[
-          { orbit: 120, hasSattelite: false, radius: 6, speed: 3 },
-          { orbit: 200, hasSattelite: true, color: '#F58866', offset: { x: 10 } }
-        ]"
-        :asteroids="{ radius: 100 }"
-      />
-    </Map>
+    <Map
+      :width="600"
+      :height="600"
+      :systems="[
+        {
+          position: { x: 100, y: 100 },
+          planets: [
+            { orbit: 120, hasSattelite: false, radius: 6, speed: 3 },
+            { orbit: 200, hasSattelite: true, color: 'red', offset: { x: -10 } },
+            { orbit: 280, radius: 18, color: 'green', offset: { x: 0 }, speed: 11 }
+          ],
+          asteroids: { radius: 150 }
+        },
+        {
+          position: { x: 420, y: 400 },
+          planets: [
+            { orbit: 120, hasSattelite: false, radius: 6, speed: 3 },
+            { orbit: 250, hasSattelite: true, color: '#F58866', offset: { x: 0 } }
+          ],
+          asteroids: { radius: 100 }
+        }
+      ]"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { BgStars, System, Map } from '@/components'
+import { Map } from '@/components'
 
 export default defineComponent({
   name: 'App',
   components: {
-    BgStars,
-    System,
     Map
   }
 })
